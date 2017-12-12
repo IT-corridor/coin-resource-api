@@ -7,7 +7,7 @@ from django.views import defaults as default_views
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from mutualcoin.users.views import null_view, confirm_email
-from mutualcoin.users.views import UserModelViewSet, AdminUserModelViewSet
+from mutualcoin.users.views import UserModelViewSet, AdminUserModelViewSet, UserLoginHistoryModelViewSet
 
 from rest_framework import routers
 router = routers.DefaultRouter()
@@ -16,10 +16,9 @@ router = routers.DefaultRouter()
 # Admin Routes
 router.register(r'users', UserModelViewSet)
 router.register(r'admin-users', AdminUserModelViewSet)
+router.register(r'logins', UserLoginHistoryModelViewSet, base_name='logins')
 
 urlpatterns = [
-    # url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    # url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),

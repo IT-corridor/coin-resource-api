@@ -6,8 +6,8 @@ from django.http import Http404
 from django.views import View
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
-from .models import User
-from .serializers import UserModelSerializer, AdminUserSerializer, VerifyEmailSerializer
+from .models import User, UserLoginHistory
+from .serializers import UserModelSerializer, AdminUserSerializer, VerifyEmailSerializer, UserLoginHistorySerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -79,9 +79,9 @@ class AdminUserModelViewSet(ModelViewSet):
         serializer.save()
         return Response(serializer.data)
 
+class UserLoginHistoryModelViewSet(ModelViewSet):
+    model = UserLoginHistory
+    serializer_class =  UserLoginHistorySerializer
 
-
-
-
-
-
+    def get_queryset(self):
+        return UserLoginHistory.objects.filter(user=self.request.user).order_by('-time')

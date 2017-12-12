@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from .models import User
+from .models import User, UserLoginHistory
 from django.contrib.auth import get_user_model
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_auth.registration.views import RegisterView
@@ -76,6 +76,12 @@ class VerifyEmailSerializer(serializers.Serializer):
     key = serializers.CharField()
 
 
+
+class UserLoginHistorySerializer(ModelSerializer):
+    class Meta:
+        model = UserLoginHistory
+        fields = ['user', 'ip', 'browser', 'time']
+        read_only_fields = ('user', 'ip', 'browser', 'time')
 
     
 
