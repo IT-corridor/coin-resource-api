@@ -43,14 +43,34 @@ class UserModelSerializer(ModelSerializer):
 
 
 class AdminUserSerializer(ModelSerializer):
-    """
-    User model w/o password
-    """
     class Meta:
         model = User
-        fields = ('pk', 'username', 'email', 'last_login', 'is_staff', 'is_superuser')
-        read_only_fields = ('email', )
+        phone = serializers.CharField(required=False)
+        fields = [
+            'id',
+            'zip_code',
+            'pin',
+            'approved',
+            'email',
+            'is_staff',
+            'is_superuser',
+            'is_active',
+            'phone',
+            'first_name',
+            'last_name',
+            'date_joined', 
+            'last_login'            
+        ]
+        read_only_fields = ('email','phone' 'zip_code', 'pin' )
 
+    def update(self, instance, validated_data):
+        print(instance)
+        if instance.approved :
+            instance.approved = False
+        else:
+            instance.approved = True
+        instance.save()
+        return instance
 
 class VerifyEmailSerializer(serializers.Serializer):
     key = serializers.CharField()

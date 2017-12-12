@@ -66,12 +66,13 @@ class UserModelViewSet(LoggingMixin, ModelViewSet):
         return Response(serializer.data)
 
 
-class UserModelViewSet(LoggingMixin, ModelViewSet):
+class AdminUserModelViewSet(ModelViewSet):
     model = User
     queryset = User.objects.all()
     serializer_class = AdminUserSerializer
         
     def update(self, request, *args, **kwargs):
+        print(request.data)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
