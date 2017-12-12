@@ -275,7 +275,6 @@ LOGIN_URL = 'account_login'
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
-
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^dashboard/'
 
@@ -295,7 +294,6 @@ REST_FRAMEWORK = {
     ),
 
 }
-
 # for use with the custom signup serializer
 REST_AUTH_REGISTER_SERIALIZERS = {
         'REGISTER_SERIALIZER': 'mutualcoin.users.register_serializer.CustomRegisterSerializer'

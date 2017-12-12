@@ -27,6 +27,9 @@ class CustomRegisterSerializer(RegisterSerializer):
     def save(self, request):
         adapter = get_adapter()
         user = adapter.new_user(request)
+        user.phone = self.validated_data.get('phone', '')
+        user.pin = self.validated_data.get('pin', '')
+        user.zip_code = self.validated_data.get('zip_code', '')
         self.cleaned_data = self.get_cleaned_data()
         adapter.save_user(request, user, self)
         setup_user_email(request, user, [])
