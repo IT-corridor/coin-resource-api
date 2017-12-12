@@ -42,7 +42,7 @@ class UserModelSerializer(ModelSerializer):
         #     return SellOrder.objects.filter(user=request.data['user'])
 
 
-class UserDetailsSerializer(ModelSerializer):
+class AdminUserSerializer(ModelSerializer):
     """
     User model w/o password
     """

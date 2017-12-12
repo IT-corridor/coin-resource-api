@@ -7,7 +7,7 @@ from django.views import View
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from .models import User
-from .serializers import UserModelSerializer, UserDetailsSerializer, VerifyEmailSerializer
+from .serializers import UserModelSerializer, AdminUserSerializer, VerifyEmailSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -57,6 +57,19 @@ class UserModelViewSet(LoggingMixin, ModelViewSet):
     def approve_user(self, request):
         print(request['id'])
         return None
+        
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+class UserModelViewSet(LoggingMixin, ModelViewSet):
+    model = User
+    queryset = User.objects.all()
+    serializer_class = AdminUserSerializer
         
     def update(self, request, *args, **kwargs):
         instance = self.get_object()

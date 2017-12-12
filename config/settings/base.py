@@ -296,7 +296,8 @@ REST_FRAMEWORK = {
 }
 # for use with the custom signup serializer
 REST_AUTH_REGISTER_SERIALIZERS = {
-        'REGISTER_SERIALIZER': 'mutualcoin.users.register_serializer.CustomRegisterSerializer'
+        'REGISTER_SERIALIZER': 'mutualcoin.users.register_serializer.CustomRegisterSerializer',
+        'LOGIN_SERIALIZER': 'mutualcoin.users.register_serializer.LoginSerializer'
 }
 
 REST_USE_JWT = True
