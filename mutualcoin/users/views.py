@@ -85,3 +85,4 @@ class UserLoginHistoryModelViewSet(ModelViewSet):
 
     def get_queryset(self):
         return UserLoginHistory.objects.filter(user=self.request.user).order_by('-time')
+

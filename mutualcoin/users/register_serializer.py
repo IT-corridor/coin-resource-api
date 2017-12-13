@@ -14,7 +14,7 @@ from rest_framework.exceptions import ValidationError
 class CustomRegisterSerializer(RegisterSerializer):
     first_name = serializers.CharField(required=True, write_only=True)
     last_name = serializers.CharField(required=True, write_only=True)  
-    phone = serializers.CharField(required=True, write_only=True)
+    phone = serializers.CharField(required=True, write_only=True, max_length=10)
     zip_code = serializers.CharField(required=True, write_only=True)
     pin = serializers.CharField(required=True, write_only=True, min_length=4)
 

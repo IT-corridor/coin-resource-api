@@ -13,10 +13,20 @@ class DepositModelSerializer(ModelSerializer):
         model = Deposit
         fields = [
             'id',
+            'owner',
             'amount',
             'created',   
         ]
-        
-        read_only_fields = (
+        read_only_fields = ('id',)
+
+class UserDepositModelSerializer(ModelSerializer):
+    class Meta:
+        model = Deposit
+        fields = [
             'id',
-        )
+            'owner',
+            'amount',
+            'created',   
+        ]
+        read_only_fields = ('id',)
+

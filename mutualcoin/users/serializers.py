@@ -61,7 +61,7 @@ class AdminUserSerializer(ModelSerializer):
             'date_joined', 
             'last_login'            
         ]
-        read_only_fields = ('email','phone' 'zip_code', 'pin' )
+        read_only_fields = ('email', 'zip_code', 'pin' )
 
     def update(self, instance, validated_data):
         print(instance)
