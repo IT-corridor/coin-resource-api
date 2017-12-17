@@ -5,11 +5,7 @@ Production settings for mutualcoin project.
 - Use Amazon's S3 for storing uploaded media
 - Use mailgun to send emails
 - Use Redis for cache
-
-
 """
-
-
 
 from .base import *  # noqa
 
@@ -17,7 +13,7 @@ from .base import *  # noqa
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='#*hq!^7)k7n9r15r1zknz(7!vbre0$bb%=^i_3h*d7)6w)0+kl')
 
 
 # This ensures that Django will be able to detect a secure connection
@@ -58,6 +54,9 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['mutualcoin.fund', ])
 INSTALLED_APPS += ['gunicorn', ]
 
 
+
+
+
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uploaded Media Files
@@ -74,17 +73,25 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='mutualcoin <noreply@mutualcoin.fund>')
-EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[mutualcoin]')
+                         default='Mutualcoin <noreply@mutualcoin.fund>')
+EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='Mutualcoin')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
+
+
 
 # Anymail with Mailgun
 INSTALLED_APPS += ['anymail', ]
-ANYMAIL = {
-    'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
-    'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
-}
+# ANYMAIL = {
+#     'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
+#     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
+# }
 EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_PASSWORD = 'alakwa336278'
+EMAIL_HOST_USER = 'boscoalakwa'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
