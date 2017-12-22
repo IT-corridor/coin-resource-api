@@ -4,12 +4,12 @@ from allauth import app_settings
 from allauth.account.views import ConfirmEmailView
 from django.http import Http404
 from django.views import View
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from .models import User, UserLoginHistory
 from .serializers import UserModelSerializer, AdminUserSerializer, VerifyEmailSerializer, UserLoginHistorySerializer
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import status
+from rest_framework import status 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_tracking.mixins import LoggingMixin
@@ -52,6 +52,7 @@ class UserModelViewSet(LoggingMixin, ModelViewSet):
     model = User
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
+    permission_classes = [IsAuthenticated]
 
     @list_route(methods=['post', 'put'])
     def approve_user(self, request):
