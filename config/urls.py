@@ -10,7 +10,10 @@ from mutualcoin.users.views import null_view, confirm_email
 from mutualcoin.users.views import ( UserModelViewSet, 
                                      AdminUserModelViewSet,
                                     UserLoginHistoryModelViewSet,)
-from deposit.views import DepositModelViewSet, DepositModelViewSet
+from deposit.views import ( DepositModelViewSet,
+                            DepositModelViewSet)
+
+from assets.views import AssetModelViewSet
 from rest_framework import routers
 router = routers.DefaultRouter()
 
@@ -21,6 +24,7 @@ router.register(r'admin-users', AdminUserModelViewSet)
 router.register(r'logins', UserLoginHistoryModelViewSet, base_name='logins')
 router.register(r'deposits', DepositModelViewSet)
 router.register(r'user-deposits', DepositModelViewSet, base_name='user-deposits')
+router.register(r'assets', AssetModelViewSet)
 
 
 urlpatterns = [
