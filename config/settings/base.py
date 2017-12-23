@@ -64,6 +64,7 @@ LOCAL_APPS = [
     # custom users app
     'mutualcoin.users.apps.UsersConfig',
     'deposit',
+    'assets',
     
 ]
 
