@@ -10,7 +10,7 @@ User = get_user_model()
 
 class AssetModelSerializer(ModelSerializer):
     class Meta:
-        model = Deposit
+        model = Asset
         fields = [
             'id',
             'coin',

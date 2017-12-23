@@ -262,7 +262,7 @@ AUTHENTICATION_BACKENDS = [
 # Some really nice defaults
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory|optional'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_ADAPTER = 'mutualcoin.users.adapters.AccountAdapter'
@@ -299,7 +299,7 @@ REST_FRAMEWORK = {
 # for use with the custom signup serializer
 REST_AUTH_REGISTER_SERIALIZERS = {
         'REGISTER_SERIALIZER': 'mutualcoin.users.register_serializer.CustomRegisterSerializer',
-        'LOGIN_SERIALIZER': 'mutualcoin.users.register_serializer.LoginSerializer'
+        # 'LOGIN_SERIALIZER': 'mutualcoin.users.register_serializer.LoginSerializer'
 }
 
 REST_USE_JWT = True
