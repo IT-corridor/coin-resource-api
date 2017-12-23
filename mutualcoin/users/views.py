@@ -83,6 +83,7 @@ class AdminUserModelViewSet(ModelViewSet):
 class UserLoginHistoryModelViewSet(ModelViewSet):
     model = UserLoginHistory
     serializer_class =  UserLoginHistorySerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return UserLoginHistory.objects.filter(user=self.request.user).order_by('-time')

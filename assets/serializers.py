@@ -13,7 +13,9 @@ class AssetModelSerializer(ModelSerializer):
         model = Asset
         fields = [
             'id',
-            'coin',
+            'name',
+            'symbol',
+            'image_url',
             'amount',
             'note',
             'created',
