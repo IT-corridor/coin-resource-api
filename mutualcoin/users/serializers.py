@@ -81,7 +81,7 @@ class UserLoginHistorySerializer(ModelSerializer):
     class Meta:
         model = UserLoginHistory
         fields = ['user', 'ip', 'browser', 'time']
-        read_only_fields = ('user', 'ip', 'browser', 'time')
+        # read_only_fields = ('user', 'ip', 'browser', 'time')
 
     
 

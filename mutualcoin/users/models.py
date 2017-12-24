@@ -11,13 +11,11 @@ from django.conf import settings
 
 @python_2_unicode_compatible
 class User(AbstractUser):
-
     phone = PhoneNumberField()
     zip_code = models.CharField(max_length=6)
     pin = models.CharField(max_length=4)
     approved = models.BooleanField(default=False)
     amount_invested = models.DecimalField(default='0.00', max_digits=12, decimal_places=2)
-
     # class Meta:
     #     ordering = ['-created']
 
@@ -29,7 +27,6 @@ class User(AbstractUser):
 
 
 class UserLoginHistory(models.Model):
-
     action = models.CharField(max_length=64)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE, related_name='user_login')
     ip = models.GenericIPAddressField(null=True)
