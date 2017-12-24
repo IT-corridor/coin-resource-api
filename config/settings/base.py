@@ -20,6 +20,9 @@ env = environ.Env()
 # .env file, should load only in development environment
 READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
 
+
+SECRET_KEY = '#*hq!^7)k7n9r15r1zknz(7!vbre0$bb%=^i_3h*d7)6w)0+kl'
+
 if READ_DOT_ENV_FILE:
     # Operating System Environment variables have precedence over variables defined in the .env file,
     # that is to say variables from the .env files will only be used if not defined
