@@ -48,7 +48,7 @@ X_FRAME_OPTIONS = 'DENY'
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['mutualcoin.fund','api.mutualcoin.fund', '137.135.96.39', '*']
+ALLOWED_HOSTS = ['*']
 # END SITE CONFIGURATION
 
 INSTALLED_APPS += ['gunicorn', ]
