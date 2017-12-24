@@ -10,4 +10,6 @@ class AssetModelViewSet(ModelViewSet):
     serializer_class = AssetModelSerializer
     queryset = Asset.objects.all()
     permission_classes = [IsAdminUser]
-    
+
+
+
