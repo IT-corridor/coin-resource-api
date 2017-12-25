@@ -29,7 +29,7 @@ class User(AbstractUser):
 class UserLoginHistory(models.Model):
     action = models.CharField(max_length=64)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE, related_name='user_login')
-    ip = models.GenericIPAddressField(null=True)
+    ip = models.CharField(null=True, max_length=16)
     browser =  models.CharField(max_length=256, null=True)
     time = models.DateTimeField(auto_now_add=True)
 
@@ -41,6 +41,5 @@ class UserLoginHistory(models.Model):
 def user_logged_in_callback(sender, request, user, **kwargs):
     ip = request.META.get('REMOTE_ADDR')
     browser = request.META.get('HTTP_USER_AGENT')
-    browser = str(browser)
     UserLoginHistory.objects.create(action='user_logged_in', ip=ip, user=user, browser=browser)
 
