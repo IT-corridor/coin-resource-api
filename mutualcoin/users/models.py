@@ -40,6 +40,7 @@ class UserLoginHistory(models.Model):
 @receiver(user_logged_in)
 def user_logged_in_callback(sender, request, user, **kwargs):
     ip = request.META.get('REMOTE_ADDR')
+    print(ip)
     browser = request.META.get('HTTP_USER_AGENT')
-    UserLoginHistory.objects.create(action='user_logged_in', ip=ip, user=user, browser=browser)
+    # UserLoginHistory.objects.create(action='user_logged_in', ip=ip, user=user, browser=browser)
 
