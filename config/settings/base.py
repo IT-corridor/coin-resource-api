@@ -319,8 +319,8 @@ CORS_ORIGIN_WHITELIST = ()
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-ALLOWED_HOSTS = ['*']
-APPEND_SLASH = True
+ALLOWED_HOSTS = ['https://investors.mutualcoin.fund/', 'https://admin.mutualcoin.fund/', 'api.mutualcoin.fund', '137.135.96.39']
+APPEND_SLASH = False
 
 PHONENUMBER_DEFAULT_REGION = 'US'
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
