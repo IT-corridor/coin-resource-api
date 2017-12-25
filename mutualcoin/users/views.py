@@ -52,7 +52,7 @@ class UserModelViewSet(LoggingMixin, ModelViewSet):
     model = User
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
     @list_route(methods=['post', 'put'])
