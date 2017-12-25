@@ -29,7 +29,7 @@ class User(AbstractUser):
 class UserLoginHistory(models.Model):
     action = models.CharField(max_length=64)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE, related_name='user_login')
-    ip = models.GenericIPAddressField(null=True)
+    ip = models.GenericIPAddressField(null=True, default='0.0.0.0')
     browser =  models.CharField(max_length=256, null=True)
     time = models.DateTimeField(auto_now_add=True)
 
