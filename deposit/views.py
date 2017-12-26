@@ -8,10 +8,12 @@ class DepositModelViewSet(ModelViewSet):
     model =  Deposit
     queryset = Deposit.objects.all()
     serializer_class = DepositModelSerializer
+    permission_classes = [IsAdminUser]
 
 class UserDepositModelViewSet(ModelViewSet):
     model = Deposit
     serializer_class = DepositModelSerializer
+    permission_classes = [IsAuthenticated]
 
-    def get_queryset(self, request):
-        return Deposit.objects.filter(owner=request.user)
+    def get_queryset(self, *args, **kwargs):
+        return Deposit.objects.filter(owner=self.request.user)
