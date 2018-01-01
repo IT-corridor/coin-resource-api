@@ -7,11 +7,12 @@ from django.views import defaults as default_views
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from mutualcoin.users.views import null_view, confirm_email
-from mutualcoin.users.views import ( UserModelViewSet, 
+from mutualcoin.users.views import ( UserModelViewSet,
                                      AdminUserModelViewSet,
                                     UserLoginHistoryModelViewSet,)
-from deposit.views import ( DepositModelViewSet,
-                            UserDepositModelViewSet)
+from deposit.views import (DepositModelViewSet,
+                            UserDepositModelViewSet,
+                            PublicUserDepositModelViewSet,)
 
 from assets.views import AssetModelViewSet
 from rest_framework import routers
@@ -24,6 +25,8 @@ router.register(r'admin-users', AdminUserModelViewSet)
 router.register(r'logins', UserLoginHistoryModelViewSet, base_name='logins')
 router.register(r'deposits', DepositModelViewSet)
 router.register(r'user-deposits', UserDepositModelViewSet, base_name='user-deposits')
+router.register(r'all-deposits', PublicUserDepositModelViewSet, base_name='all-deposits')
+
 router.register(r'assets', AssetModelViewSet)
 
 
@@ -43,7 +46,6 @@ urlpatterns = [
      url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
      url(r'^auth/v1/api-token-auth/', obtain_jwt_token),
      url(r'^api-token-refresh/', refresh_jwt_token),
-    #  url(r'^docs/', include('rest_framework_docs.urls')),
      url(r'^api/v1/', include(router.urls), name='home'),
 
 

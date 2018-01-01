@@ -5,8 +5,16 @@ from django.contrib.auth import get_user_model
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_auth.registration.views import RegisterView
 
+
 User = get_user_model()
 
+
+
+class UserLoginHistorySerializer(ModelSerializer):
+    class Meta:
+        model = UserLoginHistory
+        fields = ['user', 'ip', 'browser', 'time']
+        read_only_fields = ('user', 'ip', 'browser', 'time')
 
 class UserModelSerializer(ModelSerializer):
     class Meta:
@@ -43,6 +51,7 @@ class UserModelSerializer(ModelSerializer):
 
 
 class AdminUserSerializer(ModelSerializer):
+    # logins = UserLoginHistorySerializer(many=True)
     class Meta:
         model = User
         phone = serializers.CharField(required=False)
@@ -59,7 +68,8 @@ class AdminUserSerializer(ModelSerializer):
             'first_name',
             'last_name',
             'date_joined', 
-            'last_login'            
+            'last_login',
+            # 'logins',          
         ]
         read_only_fields = ('email', 'zip_code', 'pin' )
 
@@ -77,11 +87,6 @@ class VerifyEmailSerializer(serializers.Serializer):
 
 
 
-class UserLoginHistorySerializer(ModelSerializer):
-    class Meta:
-        model = UserLoginHistory
-        fields = ['user', 'ip', 'browser', 'time']
-        read_only_fields = ('user', 'ip', 'browser', 'time')
 
     
 
