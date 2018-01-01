@@ -85,8 +85,8 @@ INSTALLED_APPS += ['anymail', ]
 EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_PASSWORD = 'alakwa336278'
-EMAIL_HOST_USER = 'boscoalakwa'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_USER = 'apikey'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
