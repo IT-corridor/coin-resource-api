@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from .models import User, UserLoginHistory
 from .serializers import UserModelSerializer, AdminUserSerializer, VerifyEmailSerializer, UserLoginHistorySerializer
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import status 
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_tracking.mixins import LoggingMixin
@@ -54,12 +54,11 @@ class UserModelViewSet(LoggingMixin, ModelViewSet):
     serializer_class = UserModelSerializer
     # permission_classes = [IsAuthenticated]
 
-
     @list_route(methods=['post', 'put'])
     def approve_user(self, request):
         print(request['id'])
         return None
-        
+
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
@@ -73,7 +72,7 @@ class AdminUserModelViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = AdminUserSerializer
     permission_classes = [IsAdminUser]
-        
+
     def update(self, request, *args, **kwargs):
         print(request.data)
         instance = self.get_object()
@@ -82,6 +81,7 @@ class AdminUserModelViewSet(ModelViewSet):
         serializer.save()
         return Response(serializer.data)
 
+
 class UserLoginHistoryModelViewSet(ModelViewSet):
     model = UserLoginHistory
     serializer_class =  UserLoginHistorySerializer
@@ -89,4 +89,12 @@ class UserLoginHistoryModelViewSet(ModelViewSet):
 
     def get_queryset(self):
         return UserLoginHistory.objects.filter(user=self.request.user)
+
+
+class GetUserLoginHistoryModelViewSet(ModelViewSet):
+    model = UserLoginHistory
+    queryset = UserLoginHistory.objects.all()
+    serializer_class = UserLoginHistorySerializer
+    permission_classes = [IsAdminUser]
+
 

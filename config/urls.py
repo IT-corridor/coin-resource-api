@@ -9,7 +9,9 @@ from rest_framework_jwt.views import refresh_jwt_token
 from mutualcoin.users.views import null_view, confirm_email
 from mutualcoin.users.views import ( UserModelViewSet,
                                      AdminUserModelViewSet,
-                                    UserLoginHistoryModelViewSet,)
+                                     UserLoginHistoryModelViewSet,
+                                     GetUserLoginHistoryModelViewSet)
+
 from deposit.views import (DepositModelViewSet,
                             UserDepositModelViewSet,
                             PublicUserDepositModelViewSet,)
@@ -24,6 +26,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserModelViewSet)
 router.register(r'admin-users', AdminUserModelViewSet)
 router.register(r'logins', UserLoginHistoryModelViewSet, base_name='logins')
+router.register(r'all-logins', GetUserLoginHistoryModelViewSet, base_name='all-logins')
 router.register(r'deposits', DepositModelViewSet)
 router.register(r'user-deposits', UserDepositModelViewSet, base_name='user-deposits')
 router.register(r'all-deposits', PublicUserDepositModelViewSet, base_name='all-deposits')
