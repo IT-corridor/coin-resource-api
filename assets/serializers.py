@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from .models import Asset
+from .models import Asset, SoldAssets
 from django.contrib.auth import get_user_model
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_auth.registration.views import RegisterView
@@ -16,10 +16,31 @@ class AssetModelSerializer(ModelSerializer):
             'name',
             'symbol',
             'image_url',
+            'buy_price',
+            'sell_price',
+            'transaction_date',
             'amount',
             'note',
             'created',
-            'modified'   
+            'modified'
         ]
         read_only_fields = ('id',)
 
+
+class SoldAssetModelSerializer(ModelSerializer):
+    class Meta:
+        model = SoldAssets
+        fields = [
+            'id',
+            'name',
+            'symbol',
+            'image_url',
+            'sell_price',
+            'transaction_date',
+            'market_price',
+            'amount',
+            'note',
+            'created',
+            'modified'
+        ]
+        read_only_fields = ('id',)

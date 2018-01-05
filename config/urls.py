@@ -14,7 +14,8 @@ from deposit.views import (DepositModelViewSet,
                             UserDepositModelViewSet,
                             PublicUserDepositModelViewSet,)
 
-from assets.views import AssetModelViewSet
+
+from assets.views import AssetModelViewSet, SoldAssetsModelViewSet
 from rest_framework import routers
 router = routers.DefaultRouter()
 
@@ -28,7 +29,7 @@ router.register(r'user-deposits', UserDepositModelViewSet, base_name='user-depos
 router.register(r'all-deposits', PublicUserDepositModelViewSet, base_name='all-deposits')
 
 router.register(r'assets', AssetModelViewSet)
-
+router.register(r'sell-assets', SoldAssetsModelViewSet)
 
 urlpatterns = [
 
