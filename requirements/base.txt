@@ -66,6 +66,7 @@ six==1.11.0
 snowballstemmer==1.2.1
 Sphinx==1.6.5
 sphinxcontrib-websupport==1.0.1
+sendgrid-django
 sqlparse==0.2.4
 termcolor==1.1.0
 text-unidecode==1.1

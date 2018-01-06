@@ -34,8 +34,11 @@ class UserLoginHistory(models.Model):
     action = models.CharField(max_length=64)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE, related_name='user_login')
     ip = models.GenericIPAddressField(null=True, default='0.0.0.0')
-    browser =  models.CharField(max_length=256, null=True)
+    browser = models.CharField(max_length=256, null=True)
     time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-time',)
 
     def __str__(self):
         return '{0} - {1} - {2}'.format(self.action, self.username, self.ip)
@@ -43,8 +46,13 @@ class UserLoginHistory(models.Model):
 
 @receiver(user_logged_in)
 def user_logged_in_callback(sender, request, user, **kwargs):
-    ip = request.META.get('X-Real-IP')
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+
+    if x_forwarded_for:
+        ipaddress = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ipaddress = request.META.get('REMOTE_ADDR')
     browser = request.META.get('HTTP_USER_AGENT')
     browser = str(browser)
-    UserLoginHistory.objects.create(action='user_logged_in', ip=ip, user=user, browser=browser)
+    UserLoginHistory.objects.create(action='user_logged_in', ip=ipaddress, user=user, browser=browser)
 

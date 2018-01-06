@@ -15,7 +15,7 @@ from .base import *  # noqa
 # Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
 SECRET_KEY = '#*hq!^7)k7n9r15r1zknz(7!vbre0$bb%=^i_3h*d7)6w)0+kl'
 
-DEBUG = env.bool('DJANGO_DEBUG', default=True)
+# DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
@@ -75,20 +75,14 @@ EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='Mutualcoin')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
 
-
-# Anymail with Mailgun
-INSTALLED_APPS += ['anymail', ]
-# ANYMAIL = {
-#     'MAILGUN_API_KEY': env('DJANGO_MAILGUN_API_KEY'),
-#     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_SENDER_DOMAIN')
-# }
-EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_HOST_USER = 'apikey'
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_PASSWORD = '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'
+# EMAIL_HOST_USER = 'apikey'
+SENDGRID_API_KEY = "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"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------

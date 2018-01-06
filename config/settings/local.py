@@ -22,9 +22,14 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default='&p#doYet`FNw.HKBZB3|NELmoT|Frn1Np
 # Mail settings
 # ------------------------------------------------------------------------------
 
-EMAIL_PORT = 1025
+# EMAIL_PORT = 1025
 
-EMAIL_HOST = 'localhost'
+# EMAIL_HOST = 'localhost'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = "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"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # CACHING
 # ------------------------------------------------------------------------------

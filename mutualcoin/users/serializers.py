@@ -9,12 +9,12 @@ from rest_auth.registration.views import RegisterView
 User = get_user_model()
 
 
-
 class UserLoginHistorySerializer(ModelSerializer):
     class Meta:
         model = UserLoginHistory
         fields = ['user', 'ip', 'browser', 'time']
         read_only_fields = ('user', 'ip', 'browser', 'time')
+
 
 class UserModelSerializer(ModelSerializer):
     class Meta:
@@ -31,8 +31,8 @@ class UserModelSerializer(ModelSerializer):
             'phone',
             'first_name',
             'last_name',
-            'date_joined', 
-            'last_login'            
+            'date_joined',
+            'last_login'
         ]
 
         read_only_fields = (
@@ -67,9 +67,9 @@ class AdminUserSerializer(ModelSerializer):
             'phone',
             'first_name',
             'last_name',
-            'date_joined', 
+            'date_joined',
             'last_login',
-            # 'logins',          
+            # 'logins',
         ]
         read_only_fields = ('email', 'zip_code', 'pin' )
 
@@ -82,12 +82,13 @@ class AdminUserSerializer(ModelSerializer):
         instance.save()
         return instance
 
+
 class VerifyEmailSerializer(serializers.Serializer):
     key = serializers.CharField()
 
 
 
 
-    
+
 
 

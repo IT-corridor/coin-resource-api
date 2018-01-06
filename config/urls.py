@@ -40,17 +40,15 @@ urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
     # User management
     url(r'^accounts/', include('allauth.urls')),
-
-    #auth urls
-     url(r'^rest-auth/registration/account-email-verification-sent/', null_view, name='account_email_verification_sent'),
-     url(r'^rest-auth/registration/account-confirm-email/', null_view, name='account_confirm_email'),
-     url(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',null_view, name='password_reset_confirm'),
-     url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
-     url(r'^verify-email/(?P<key>\w+)/$', confirm_email, name="account_confirm_email"),
-     url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
-     url(r'^auth/v1/api-token-auth/', obtain_jwt_token),
-     url(r'^api-token-refresh/', refresh_jwt_token),
-     url(r'^api/v1/', include(router.urls), name='home'),
+    url(r'^rest-auth/registration/account-email-verification-sent/', null_view, name='account_email_verification_sent'),
+    url(r'^rest-auth/registration/account-confirm-email/', null_view, name='account_confirm_email'),
+    url(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',null_view, name='password_reset_confirm'),
+    url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
+    url(r'^verify-email/(?P<key>\w+)/$', confirm_email, name="account_confirm_email"),
+    url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^auth/v1/api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-refresh/', refresh_jwt_token),
+    url(r'^api/v1/', include(router.urls), name='home'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
