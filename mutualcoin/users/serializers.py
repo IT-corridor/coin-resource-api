@@ -29,6 +29,7 @@ class UserModelSerializer(ModelSerializer):
             'is_superuser',
             'is_active',
             'phone',
+            'investment_start_date',
             'first_name',
             'last_name',
             'date_joined',

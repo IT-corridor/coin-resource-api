@@ -9,19 +9,20 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out, user_lo
 from django.dispatch import receiver
 from django.conf import settings
 
+
 @python_2_unicode_compatible
 class User(AbstractUser):
     phone = PhoneNumberField()
     zip_code = models.CharField(max_length=6)
     pin = models.CharField(max_length=4)
     approved = models.BooleanField(default=False)
+    investment_start_date = models.DateTimeField(blank=True, null=True)
     amount_invested = models.DecimalField(default='0.00', max_digits=12, decimal_places=2)
     # class Meta:
     #     ordering = ['-created']
 
     def __str__(self):
         return self.username
-
 
     def logins(self):
         return self.userloginhistoryh_set.all()
