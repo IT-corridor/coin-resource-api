@@ -30,6 +30,7 @@ class SoldAssets(models.Model):
     name = models.CharField(max_length=256)
     symbol = models.CharField(max_length=200, default='')
     image_url = models.CharField(max_length=200, default='')
+    asset_id = models.CharField(max_length=2, default='')
     amount = models.DecimalField(max_digits=10, decimal_places=8, default=0.00)
     sell_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.00)
     market_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.00)

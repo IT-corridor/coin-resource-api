@@ -37,6 +37,7 @@ class SoldAssetModelSerializer(ModelSerializer):
             'name',
             'symbol',
             'image_url',
+            'asset_id',
             'sell_price',
             'currency',
             'price_type',

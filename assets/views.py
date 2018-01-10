@@ -27,10 +27,9 @@ class SoldAssetsModelViewSet(ModelViewSet):
 
         else:
             asset.amount -= request.data['amount']
+            asset.asset_id = asset.id
             asset.save()
-            print(asset.amount)
             serializer = self.get_serializer(data=request.data)
-            print(request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
             headers = self.get_success_headers(serializer.data)

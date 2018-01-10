@@ -68,7 +68,7 @@ LOCAL_APPS = [
     'mutualcoin.users.apps.UsersConfig',
     'deposit',
     'assets',
-    
+
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -297,6 +297,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
 
     ),
+    'COERCE_DECIMAL_TO_STRING': False
 
 }
 # for use with the custom signup serializer
