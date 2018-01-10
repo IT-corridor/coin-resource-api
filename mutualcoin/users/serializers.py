@@ -44,7 +44,6 @@ class UserModelSerializer(ModelSerializer):
             instance.phone = validated_data.get('phone', instance.phone)
             instance.first_name = validated_data.get('first_name', instance.first_name)
             instance.last_name = validated_data.get('last_name', instance.last_name)
-            instance.investment_start_date = validated_data.get('investment_start_date', instance.investment_start_date)
             instance.save()
             return instance
         #
@@ -65,19 +64,19 @@ class AdminUserSerializer(ModelSerializer):
             'email',
             'is_staff',
             'is_superuser',
+            'investment_start_date',
             'is_active',
             'phone',
             'first_name',
             'last_name',
             'date_joined',
             'last_login',
-            # 'logins',
         ]
         read_only_fields = ('email', 'zip_code', 'pin' )
 
     def update(self, instance, validated_data):
-        print(instance)
-        if instance.approved :
+        instance.investment_start_date = validated_data.get('investment_start_date', instance.investment_start_date)
+        if instance.approved:
             instance.approved = False
         else:
             instance.approved = True
