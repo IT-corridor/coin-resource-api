@@ -34,3 +34,12 @@ class SoldAssetsModelViewSet(ModelViewSet):
             serializer.save()
             headers = self.get_success_headers(serializer.data)
             return Response(status=status.HTTP_201_CREATED, headers=headers)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if request['investment_start_date']:
+            instance.investment_start_date = request['investment_start_date']
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
