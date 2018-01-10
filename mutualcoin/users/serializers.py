@@ -44,6 +44,7 @@ class UserModelSerializer(ModelSerializer):
             instance.phone = validated_data.get('phone', instance.phone)
             instance.first_name = validated_data.get('first_name', instance.first_name)
             instance.last_name = validated_data.get('last_name', instance.last_name)
+            instance.last_name = validated_data.get('investment_start_date', instance.investment_start_date)
             instance.save()
             return instance
         #
