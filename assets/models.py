@@ -13,6 +13,7 @@ class Asset(models.Model):
     currency = models.CharField(max_length=10, default='')
     price_type = models.CharField(max_length=10, default='')
     buy_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.00)
+    purchase_price = models.DecimalField(max_digits=20,decimal_places=8, default=0.00)
     sell_price = models.DecimalField(max_digits=20, decimal_places=8, default=0.00)
     transaction_date = models.DateField(default=datetime.now, blank=True)
     note = models.CharField(max_length=256, null=True, blank=True)

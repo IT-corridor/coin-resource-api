@@ -20,6 +20,7 @@ class AssetModelSerializer(ModelSerializer):
             'sell_price',
             'currency',
             'price_type',
+            'purchase_price',
             'transaction_date',
             'amount',
             'note',
