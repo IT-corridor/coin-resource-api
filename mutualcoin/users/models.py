@@ -16,7 +16,7 @@ class User(AbstractUser):
     zip_code = models.CharField(max_length=6)
     pin = models.CharField(max_length=4)
     approved = models.BooleanField(default=False)
-    investment_start_date = models.DateTimeField(blank=True)
+    investment_start_date = models.DateTimeField(blank=True,  null=True)
     amount_invested = models.DecimalField(default='0.00', max_digits=12, decimal_places=2)
     # class Meta:
     #     ordering = ['-created']
