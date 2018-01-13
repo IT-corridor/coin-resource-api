@@ -297,7 +297,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
 
     ),
-    'COERCE_DECIMAL_TO_STRING': False
+    'COERCE_DECIMAL_TO_STRING': False,
+    'DATETIME_FORMAT': "%Y-%m-%dT%H:%M:%S.%fZ",
 
 }
 # for use with the custom signup serializer
