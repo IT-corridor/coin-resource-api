@@ -35,6 +35,7 @@ class SoldAssets(models.Model):
     purchase_price = models.DecimalField(max_digits=32, default=0.00, decimal_places=12)
     amount = models.DecimalField(max_digits=32, decimal_places=8, default=0.00)
     sell_price = models.DecimalField(max_digits=20, decimal_places=12, default=0.00)
+    buy_price = models.DecimalField(max_digits=20, decimal_places=12, default=0.00)
     market_price = models.DecimalField(max_digits=20, decimal_places=12, default=0.00)
     currency = models.CharField(max_length=10, default='')
     price_type = models.CharField(max_length=10, default='')
