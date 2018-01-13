@@ -25,7 +25,7 @@ class User(AbstractUser):
         return self.username
 
     def logins(self):
-        return self.userloginhistoryh_set.all()
+        return self.userloginhistory_set.all()
 
     # def get_absolute_url(self):
     #     return reverse('users:detail', kwargs={'username': self.username})

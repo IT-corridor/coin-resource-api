@@ -42,6 +42,7 @@ class SoldAssetModelSerializer(ModelSerializer):
             'sell_price',
             'currency',
             'price_type',
+            'purchase_price',
             'transaction_date',
             'market_price',
             'amount',
