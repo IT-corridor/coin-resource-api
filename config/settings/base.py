@@ -128,6 +128,14 @@ DATABASES = {
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_PASSWORD = 'alakwa336278'
+EMAIL_HOST_USER = 'boscoalakwa'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -265,7 +273,7 @@ AUTHENTICATION_BACKENDS = [
 # Some really nice defaults
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory|optional'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_ADAPTER = 'mutualcoin.users.adapters.AccountAdapter'
@@ -317,12 +325,9 @@ JWT_AUTH = {
 }
 
 CORS_ORIGIN_WHITELIST = ()
-
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-
 ALLOWED_HOSTS = ['*']
 APPEND_SLASH = False
-
 PHONENUMBER_DEFAULT_REGION = 'US'
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
