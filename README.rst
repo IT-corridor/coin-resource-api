@@ -39,8 +39,9 @@ Ensure that you create a virtual environment first using pyenv or virtualenv
     $ createdb mutualcoin
     $ source bin/activate
     $ cd mcf
-    $ cd mcf
-    $ open htmlcov/index.html
+    $ ./manage.py migrate
+
+
 
 
 
