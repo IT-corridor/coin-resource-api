@@ -15,7 +15,7 @@ from .base import *  # noqa
 # Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
 SECRET_KEY = '#*hq!^7)k7n9r15r1zknz(7!vbre0$bb%=^i_3h*d7)6w)0+kl'
 
-# DEBUG = env.bool('DJANGO_DEBUG', default=False)
+DEBUG = True
 
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
