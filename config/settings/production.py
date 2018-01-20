@@ -76,7 +76,6 @@ SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = "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"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -166,7 +165,6 @@ CACHES = {
 # }
 
 # Custom Admin URL, use {% url 'admin:index' %}
-ADMIN_URL = 'adminarea'
 
 # Your production stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
