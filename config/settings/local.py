@@ -6,6 +6,7 @@ Local settings for mutualcoin project.
 - Use mailhog for emails
 """
 
+import os
 from .base import *  # noqa
 
 # DEBUG
@@ -69,3 +70,11 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # 3rd party library settings
 # ------------------------------------------------------------------------------
 URL_FRONT = 'http://localhost:8082/src/#/'
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
