@@ -61,6 +61,7 @@ pytz==2017.3
 redis==2.10.6
 regex==2017.11.9
 requests==2.13.0
+requests[security]
 requests-oauthlib==0.8.0
 simplegeneric==0.8.1
 six==1.11.0
