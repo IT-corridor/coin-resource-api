@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
     url(r'^verify-email/(?P<key>\w+)/$', confirm_email, name="account_confirm_email"),
     url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^api/v1/getTrends/(?P<keyword>\w+)/(?P<period>\d+)', getTrends),
+    url(r'^api/v1/getTrends/(?P<keyword>.+)/(?P<period>\d+)', getTrends),
     url(r'^auth/v1/api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls), name='home'),

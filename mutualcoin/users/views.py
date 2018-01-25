@@ -22,9 +22,9 @@ from pytrends.request import TrendReq
 
 PERIODS = {
     24: 'now 1-d',
+    90: 'today 3-m',
     150: 'now 7-d',
-    720: 'today 1-m',
-    2000: 'today 3-m'
+    720: 'today 1-m'
 }
 
 @api_view()
