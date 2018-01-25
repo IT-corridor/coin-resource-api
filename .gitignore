@@ -308,4 +308,6 @@ mailhog
 
 mutualcoin/media/
 
-
+db.sqlite3
+nohup.out
+migrations/
