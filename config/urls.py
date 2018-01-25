@@ -2,11 +2,10 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
-from mutualcoin.users.views import null_view, confirm_email
+from mutualcoin.users.views import null_view, confirm_email, getTrends
 from mutualcoin.users.views import ( UserModelViewSet,
                                      AdminUserModelViewSet,
                                      UserLoginHistoryModelViewSet,
@@ -46,6 +45,7 @@ urlpatterns = [
     url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
     url(r'^verify-email/(?P<key>\w+)/$', confirm_email, name="account_confirm_email"),
     url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^api/v1/getTrends/(?P<keyword>\w+)/(?P<period>\d+)', getTrends),
     url(r'^auth/v1/api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls), name='home'),

@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
+import random
+
 from allauth import app_settings
 from allauth.account.views import ConfirmEmailView
 from django.http import Http404
+from django.http import JsonResponse
 from django.views import View
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
@@ -14,12 +17,45 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework.decorators import list_route, detail_route
+from datetime import datetime, timedelta
+from pytrends.request import TrendReq
 
+PERIODS = {
+    24: 'now 1-d',
+    150: 'now 7-d',
+    720: 'today 1-m',
+    2000: 'today 3-m'
+}
 
 @api_view()
 def null_view(request):
     pass
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view()
+def getTrends(request, keyword, period):
+    pytrend = TrendReq()
+    period = int(period)
+
+    if period in PERIODS:
+        timeframe = PERIODS[period]
+    else:
+        end = datetime.now().strftime('%Y-%m-%d')
+        start = (datetime.now() - timedelta(days=period)).strftime('%Y-%m-%d')
+        timeframe = '{} {}'.format(start, end)
+
+    pytrend.build_payload([keyword], timeframe=timeframe)
+    interest_over_time_df = pytrend.interest_over_time()
+
+    result = []
+    for index, row in interest_over_time_df.iterrows():
+        result.append({
+            'date': str(index),
+            'value': row[keyword], 
+            'volumne': random.randint(1, 22)
+        })
+
+    return JsonResponse(result, safe=False)
 
 
 class VerifyEmailView(APIView, ConfirmEmailView):
