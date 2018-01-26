@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 import random
+import requests
 
 from allauth import app_settings
 from allauth.account.views import ConfirmEmailView
@@ -63,6 +64,14 @@ def getTrends(request, keyword, period):
 
     return JsonResponse(result, safe=False)
 
+def getCoinInfo(request, cid):
+    url = 'https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id={}'.format(cid)
+    try:
+        result = requests.get(url).json()
+    except Exception, e:
+        print str(e), '##########'
+
+    return JsonResponse(result, safe=False)
 
 class VerifyEmailView(APIView, ConfirmEmailView):
     permission_classes = (AllowAny,)
