@@ -34,26 +34,32 @@ def null_view(request):
 
 @api_view()
 def getTrends(request, keyword, period):
-    pytrend = TrendReq()
-    period = int(period)
-
-    if period in PERIODS:
-        timeframe = PERIODS[period]
-    else:
-        end = datetime.now().strftime('%Y-%m-%d')
-        start = (datetime.now() - timedelta(days=period)).strftime('%Y-%m-%d')
-        timeframe = '{} {}'.format(start, end)
-
-    pytrend.build_payload([keyword], timeframe=timeframe)
-    interest_over_time_df = pytrend.interest_over_time()
-
     result = []
-    for index, row in interest_over_time_df.iterrows():
-        result.append({
-            'date': str(index),
-            'value': row[keyword], 
-            'volumne': random.randint(1, 22)
-        })
+    try:
+        pytrend = TrendReq()
+        period = int(period)
+
+        if period in PERIODS:
+            timeframe = PERIODS[period]
+        else:
+            end = datetime.now().strftime('%Y-%m-%d')
+            start = (datetime.now() - timedelta(days=period)).strftime('%Y-%m-%d')
+            timeframe = '{} {}'.format(start, end)
+
+        pytrend.build_payload([keyword], timeframe=timeframe)
+        interest_over_time_df = pytrend.interest_over_time()
+
+        if keyword.isdigit():
+            keyword = int(keyword)
+
+        for index, row in interest_over_time_df.iterrows():
+            result.append({
+                'date': str(index),
+                'value': row[keyword], 
+                'volumne': random.randint(1, 22)
+            })
+    except Exception, e:
+        pass
 
     return JsonResponse(result, safe=False)
 
