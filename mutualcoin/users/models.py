@@ -42,7 +42,7 @@ class UserLoginHistory(models.Model):
         ordering = ('-time',)
 
     def __str__(self):
-        return '{0} - {1} - {2}'.format(self.action, self.username, self.ip)
+        return '{0} - {1} - {2}'.format(self.action, self.user.username, self.ip)
 
 
 @receiver(user_logged_in)
