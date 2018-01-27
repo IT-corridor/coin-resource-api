@@ -22,13 +22,11 @@ class UserModelSerializer(ModelSerializer):
         fields = [
             'id',
             'zip_code',
-            'pin',
             'approved',
             'email',
             'is_staff',
             'is_superuser',
             'is_active',
-            'phone',
             'investment_start_date',
             'first_name',
             'last_name',
@@ -59,14 +57,12 @@ class AdminUserSerializer(ModelSerializer):
         fields = [
             'id',
             'zip_code',
-            'pin',
             'approved',
             'email',
             'is_staff',
             'is_superuser',
             'investment_start_date',
             'is_active',
-            'phone',
             'first_name',
             'last_name',
             'date_joined',
@@ -86,10 +82,3 @@ class AdminUserSerializer(ModelSerializer):
 
 class VerifyEmailSerializer(serializers.Serializer):
     key = serializers.CharField()
-
-
-
-
-
-
-

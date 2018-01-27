@@ -12,11 +12,11 @@ from django.conf import settings
 
 @python_2_unicode_compatible
 class User(AbstractUser):
-    phone = PhoneNumberField()
+    phone = PhoneNumberField(blank=True, null=True)
     zip_code = models.CharField(max_length=6)
-    pin = models.CharField(max_length=4)
+    pin = models.CharField(max_length=4, blank=True, null=True)
     approved = models.BooleanField(default=False)
-    investment_start_date = models.DateTimeField(blank=True,  null=True)
+    investment_start_date = models.DateTimeField(blank=True, null=True)
     amount_invested = models.DecimalField(default='0.00', max_digits=12, decimal_places=2)
     # class Meta:
     #     ordering = ['-created']

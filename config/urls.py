@@ -20,6 +20,7 @@ from assets.views import AssetModelViewSet, SoldAssetsModelViewSet
 from rest_framework import routers
 router = routers.DefaultRouter()
 
+admin.site.site_header = 'Altcoin Trender Admin'
 # app routes
 # Admin Routes
 router.register(r'users', UserModelViewSet)
