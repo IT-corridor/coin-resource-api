@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from .models import User
+from .models import User, Coin
 
 
 class MyUserChangeForm(UserChangeForm):
@@ -37,3 +37,10 @@ class MyUserAdmin(AuthUserAdmin):
     ) + AuthUserAdmin.fieldsets
     list_display = ('email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'date_joined', 'last_login')
     search_fields = ['email']
+
+
+class CoinAdmin(admin.ModelAdmin):
+    list_display = ['symbol', 'name', 'startdate']
+    search_fields = ['name']
+
+admin.site.register(Coin, CoinAdmin)

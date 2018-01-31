@@ -10,8 +10,8 @@ from django.http import JsonResponse
 from django.views import View
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
-from .models import User, UserLoginHistory
-from .serializers import UserModelSerializer, AdminUserSerializer, VerifyEmailSerializer, UserLoginHistorySerializer
+from .models import User, UserLoginHistory, Coin
+from .serializers import *
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -30,7 +30,6 @@ PERIODS = {
 
 @api_view()
 def null_view(request):
-    pass
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view()
@@ -147,5 +146,12 @@ class GetUserLoginHistoryModelViewSet(ModelViewSet):
     queryset = UserLoginHistory.objects.all()
     serializer_class = UserLoginHistorySerializer
     permission_classes = [IsAdminUser]
+
+
+class CoinViewSet(ModelViewSet):
+    model = Coin
+    queryset = Coin.objects.all()
+    serializer_class = CoinSerializer
+    permission_classes = (AllowAny,)
 
 

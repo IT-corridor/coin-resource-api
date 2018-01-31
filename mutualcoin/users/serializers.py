@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from .models import User, UserLoginHistory
+from .models import User, UserLoginHistory, Coin
 from django.contrib.auth import get_user_model
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_auth.registration.views import RegisterView
@@ -14,6 +14,12 @@ class UserLoginHistorySerializer(ModelSerializer):
         model = UserLoginHistory
         fields = ['user', 'ip', 'browser', 'time']
         read_only_fields = ('user', 'ip', 'browser', 'time')
+
+
+class CoinSerializer(ModelSerializer):
+    class Meta:
+        model = Coin
+        exclude = []
 
 
 class UserModelSerializer(ModelSerializer):

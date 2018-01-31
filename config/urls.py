@@ -7,6 +7,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from mutualcoin.users.views import null_view, confirm_email, getTrends, getCoinInfo
 from mutualcoin.users.views import ( UserModelViewSet,
+                                     CoinViewSet,
                                      AdminUserModelViewSet,
                                      UserLoginHistoryModelViewSet,
                                      GetUserLoginHistoryModelViewSet)
@@ -22,7 +23,7 @@ router = routers.DefaultRouter()
 
 admin.site.site_header = 'Altcoin Trender Admin'
 # app routes
-# Admin Routes
+router.register(r'coins', CoinViewSet)
 router.register(r'users', UserModelViewSet)
 router.register(r'admin-users', AdminUserModelViewSet)
 router.register(r'logins', UserLoginHistoryModelViewSet, base_name='logins')
